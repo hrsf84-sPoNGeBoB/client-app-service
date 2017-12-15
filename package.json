@@ -13,13 +13,14 @@
   "dependencies": {
     "axios": "^0.17.1",
     "dotenv": "^4.0.0",
-    "express": "^4.16.2"
+    "elasticsearch": "^14.0.0",
+    "express": "^4.16.2",
+    "jsonfile": "^4.0.0",
+    "random-words": "0.0.1"
   },
   "devDependencies": {
     "eslint": "^4.13.1",
     "eslint-config-airbnb-base": "^12.1.0",
-    "eslint-plugin-import": "^2.8.0",
-    "jsonfile": "^4.0.0",
-    "random-words": "0.0.1"
+    "eslint-plugin-import": "^2.8.0"
   }
 }

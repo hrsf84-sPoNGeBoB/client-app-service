@@ -23,12 +23,12 @@ const MAX_RESULTS = 50;
   const fetch = (key, query = randomWords(), pageToken) => {
     axios.get('https://www.googleapis.com/youtube/v3/search', {
       params: {
-        pageToken: pageToken,
-        key: key,
+        pageToken,
+        key,
         q: query,
         maxResults: Math.min(MAX_RESULTS, TARGET - count),
-        part: 'snippet'
-      }
+        part: 'snippet',
+      },
     })
       .then(({ data: { items, nextPageToken } }) => {
         count += items.length;
@@ -60,6 +60,6 @@ const MAX_RESULTS = 50;
       });
   };
 
-  apiKeys.forEach((key) => fetch(key));
+  apiKeys.forEach(key => fetch(key));
 }());
 
