@@ -3,6 +3,11 @@ config/development.json
 config/production.json
 config/staging.json
 config/test.json
+data/
+.env
+
+# Vim
+*.swp
 
 # OS X
 .DS_Store

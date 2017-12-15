@@ -1,0 +1,25 @@
+{
+  "name": "client-app-service",
+  "version": "1.0.0",
+  "description": "The project description",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node -r dotenv/config server",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "generate": "node -r dotenv/config scripts/generate-data.js"
+  },
+  "author": "Alan Chin",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.17.1",
+    "dotenv": "^4.0.0",
+    "express": "^4.16.2"
+  },
+  "devDependencies": {
+    "eslint": "^4.13.1",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0",
+    "jsonfile": "^4.0.0",
+    "random-words": "0.0.1"
+  }
+}

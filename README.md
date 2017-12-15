@@ -1,4 +1,4 @@
-# Project Name
+# Client App Service
 
 The project description
 
@@ -24,10 +24,15 @@ See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
 
 ## Requirements
 
+<<<<<<< HEAD
 - Node 6.9.x
 - Redis 3.2.x
 - Postgresql 9.6.x
 - etc
+=======
+- Node ^6.9.x
+- Express ^4.16.2
+>>>>>>> Initial commit
 
 ## Other Information
 
