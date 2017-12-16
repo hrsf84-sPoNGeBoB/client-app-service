@@ -62,4 +62,3 @@ const MAX_RESULTS = 50;
 
   apiKeys.forEach(key => fetch(key));
 }());
-
