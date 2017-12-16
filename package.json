@@ -4,10 +4,10 @@
   "description": "The project description",
   "main": "app.js",
   "scripts": {
-    "start": "node -r dotenv/config server",
+    "start": "node -r dotenv/config app",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "generate-real-yt": "node -r dotenv/config scripts/generate-real-youtube-data.js",
-    "generate-fake-ch": "node -r dotenv/config scripts/generate-fake-channel-data.js"
+    "generate-real-yt": "node -r dotenv/config scripts/generate-real-youtube-data",
+    "generate-fake-ch": "node -r dotenv/config scripts/generate-fake-channel-data"
   },
   "author": "Alan Chin",
   "license": "ISC",

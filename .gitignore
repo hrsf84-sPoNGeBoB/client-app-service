@@ -12,6 +12,9 @@ data/
 # OS X
 .DS_Store
 
+# Vim
+*.swp
+
 # Logs
 logs
 *.log
