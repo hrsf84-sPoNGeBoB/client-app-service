@@ -9,5 +9,5 @@ app.use(require('./controllers'));
 const port = process.env.PORT || 6969;
 
 app.listen(port, () => {
-  console.log(`App listening on port ${port}`);
+  console.log(`App listening on port ${port}...`);
 });

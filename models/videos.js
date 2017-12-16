@@ -1,10 +1,10 @@
-const { videos } = require('../db');
+const { videosClient } = require('../db');
 
 const addVideoEntry = () => {};
 
-const query = () => {};
+const queryResults = q => videosClient.search({ q });
 
 module.exports = {
   addVideoEntry,
-  query,
+  queryResults,
 };

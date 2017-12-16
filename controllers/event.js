@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-router.post('/event', () => {
+router.post('/event', (req, res) => {
 
 });
 

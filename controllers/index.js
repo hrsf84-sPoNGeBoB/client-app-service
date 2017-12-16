@@ -3,13 +3,13 @@ const router = require('express').Router();
 /*
  * Service routes
  */
-router.use('/info', require('./info'));
+router.use(require('./info'));
 
 /*
  * Client routes
  */
-router.use('/event', require('./event'));
-router.use('/results', require('./results'));
-router.use('/watch', require('./watch'));
+router.use(require('./event'));
+router.use(require('./results'));
+router.use(require('./watch'));
 
 module.exports = router;
