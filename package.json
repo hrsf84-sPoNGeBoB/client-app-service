@@ -6,17 +6,21 @@
   "scripts": {
     "start": "node -r dotenv/config server",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "generate": "node -r dotenv/config scripts/generate-data.js"
+    "generate-real-yt": "node -r dotenv/config scripts/generate-real-youtube-data.js",
+    "generate-fake-ch": "node -r dotenv/config scripts/generate-fake-channel-data.js"
   },
   "author": "Alan Chin",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.17.1",
     "body-parser": "^1.18.2",
+    "cassandra-driver": "^3.3.0",
     "dotenv": "^4.0.0",
     "elasticsearch": "^14.0.0",
     "express": "^4.16.2",
+    "faker": "^4.1.0",
     "jsonfile": "^4.0.0",
+    "moment": "^2.19.4",
     "random-words": "0.0.1"
   },
   "devDependencies": {

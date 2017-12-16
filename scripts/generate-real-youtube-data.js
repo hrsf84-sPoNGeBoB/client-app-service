@@ -2,7 +2,7 @@ const axios = require('axios');
 const jsonfile = require('jsonfile');
 const randomWords = require('random-words');
 
-const file = './data/youtube-data.json';
+const file = './data/real-youtube-data.json';
 
 const TARGET = 100000;
 const MAX_RESULTS = 50;
