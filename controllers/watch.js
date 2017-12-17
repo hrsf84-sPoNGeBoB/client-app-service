@@ -9,11 +9,15 @@ router.get('/watch', (req, res) => {
 
   const requests = [];
 
-  if (informationService) requests.push(axios.get(informationService, { params: { v } }));
-  else console.log('Information service not found');
+  if (informationService) {
+    const infoUrl = `${informationService}/video/${v}`;
+    requests.push(axios.get(infoUrl));
+  } else console.log('Information service not found');
 
-  if (adService) requests.push(axios.get(adService, { params: { v } }));
-  else console.log('Ad service not found');
+  if (adService) {
+    const adUrl = `${adService}/ads`;
+    requests.push(axios.get(adUrl, { params: { v } }));
+  } else console.log('Ad service not found');
 
   Promise.all(requests)
     .then((responses) => {

@@ -1,6 +1,8 @@
 const { videosClient } = require('../db');
 
-const addVideoEntry = () => {};
+const addVideoEntry = (video) => {
+  videosClient.create({});
+};
 
 const queryResults = q => videosClient.search({ q });
 
