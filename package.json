@@ -6,12 +6,12 @@
   "scripts": {
     "start": "node -r dotenv/config app",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "generate-real-yt": "node -r dotenv/config scripts/generate-real-youtube-data",
-    "generate-fake-ch": "node -r dotenv/config scripts/generate-fake-channel-data"
+    "gen-data": "node -r dotenv/config scripts/generate-fake-channel-video-data"
   },
   "author": "Alan Chin",
   "license": "ISC",
   "dependencies": {
+    "aws-sdk": "^2.171.0",
     "axios": "^0.17.1",
     "body-parser": "^1.18.2",
     "cassandra-driver": "^3.3.0",
