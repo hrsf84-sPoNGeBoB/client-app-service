@@ -1,13 +1,16 @@
-const express = require('express');
+const apm = require('elastic-apm-node').start({
+  appName: 'client-app-service',
+});
+// const EC2 = require('aws-sdk/clients/ec2');
+// const SQS = require('aws-sdk/clients/sqs');
+const app = require('express')();
 const bodyParser = require('body-parser');
-
-const app = express();
 
 app.use(bodyParser.json());
 app.use(require('./controllers'));
 
-const port = process.env.PORT || 6969;
+app.use(apm.middleware.express());
 
-app.listen(port, () => {
-  console.log(`App listening on port ${port}...`);
-});
+const port = process.env.PORT || 13337;
+
+app.listen(port, () => console.log(`App listening on port ${port}...`));

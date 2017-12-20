@@ -33,13 +33,17 @@ const SUB_CHANCE = 0.015;
     }
   }
 
+  const handleError = (error) => {
+    if (err) console.log('Bad write', error);
+  };
+
   startTime = moment();
   const channelStream = fs.createWriteStream(channelFile, { flags: 'a', encoding: null });
 
   // Write channels
   channelStream.once('open', (fd) => {
     channels.forEach((channel) => {
-      fs.writeSync(fd, `${JSON.stringify(channel)}\n`, (err) => { if (err) console.log('Bad write'); });
+      fs.writeSync(fd, `${JSON.stringify(channel)}\n`, handleError);
     });
 
     channelStream.end();
@@ -75,7 +79,7 @@ const SUB_CHANCE = 0.015;
         video.snippet.title = faker.random.words(2 + Math.floor(Math.random() * 8));
         video.snippet.description = faker.random.words(10 + Math.floor(Math.random() * 15));
 
-        fs.writeSync(fd, `${JSON.stringify(video)}\n`, (err) => { if (err) console.log('Bad write'); });
+        fs.writeSync(fd, `${JSON.stringify(video)}\n`, handleError);
       }
 
       videoStream.end();

@@ -1,14 +1,14 @@
-const { videosClient } = require('../db');
+const client = require('../db').esearchClient;
 
 const addVideoEntry = (video) => {
-  videosClient.create({
+  client.create({
     index: 'videos',
     type: 'video',
     body: video,
   });
 };
 
-const queryResults = q => videosClient.search({ q });
+const queryResults = q => client.search({ q });
 
 module.exports = {
   addVideoEntry,
