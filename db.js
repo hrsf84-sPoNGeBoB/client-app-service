@@ -1,10 +1,5 @@
-const elasticsearch = require('elasticsearch');
 const cassandra = require('cassandra-driver');
-
-const esearchClient = new elasticsearch.Client({
-  host: `${process.env.ESEARCH_URI || 'localhost'}:${process.env.ESEARCH_PORT || 9200}`,
-  log: 'trace',
-});
+const elasticsearch = require('elasticsearch');
 
 const cassandraClient = new cassandra.Client({
   contactPoints: [
@@ -12,7 +7,17 @@ const cassandraClient = new cassandra.Client({
   ],
 });
 
+cassandraClient.connect((error) => {
+  if (error) console.log('Problem connecting to Cassandra', error);
+  else console.log('Connected to Cassandra');
+});
+
+const esearchClient = new elasticsearch.Client({
+  host: `${process.env.ESEARCH_URI || 'localhost'}:${process.env.ESEARCH_PORT || 9200}`,
+  // log: 'trace',
+});
+
 module.exports = {
-  esearchClient,
   cassandraClient,
+  esearchClient,
 };

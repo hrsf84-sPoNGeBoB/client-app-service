@@ -1,14 +1,14 @@
 const router = require('express').Router();
-const videosDb = require('../models/videos');
-const channelsDb = require('../models/channels');
+const videos = require('../models/videos');
+const channels = require('../models/channels');
 
 router.post('/info', (req, res) => {
   const { type, data } = req.body;
 
   if (type === 'video') {
-    videosDb.addVideoEntry(data);
+    videos.addVideoEntry(data);
   } else if (type === 'channel') {
-    channelsDb.addChannel(data);
+    channels.addChannel(data);
   }
 
   res.send();

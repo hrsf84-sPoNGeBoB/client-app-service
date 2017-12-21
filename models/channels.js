@@ -1,10 +1,5 @@
 const client = require('../db').cassandraClient;
 
-client.connect((error) => {
-  if (error) console.log('Problem connecting to Cassandra', error);
-  else console.log('Connected to Cassandra');
-});
-
 const KEYSPACE = 'channels';
 const TABLE = 'channels';
 const channelsKeyspaceQuery = `CREATE KEYSPACE IF NOT EXISTS ${KEYSPACE} WITH REPLICATION = {'class': '${process.env.CASSANDRA_REPL_CLASS}', 'replication_factor': ${process.env.CASSANDRA_REPL_FACTOR}};`;
@@ -50,14 +45,14 @@ const batchInsertChannels = (channels) => {
   return client.batch(queries, { prepare: true });
 };
 
-const isSubscribed = (channel1, channel2) => {
+const isSubscribed = (viewerId, channelId) => {
   const query = `SELECT subscriptions FROM ${KEYSPACE}.${TABLE} WHERE channel_id = ?`;
 
   return new Promise((resolve, reject) => {
-    client.execute(query, [channel1], { prepare: true })
-      .then((results) => {
-        const { subscriptions } = results.rows[0];
-        resolve(!!subscriptions[channel2]);
+    client.execute(query, [viewerId], { prepare: true })
+      .then((result) => {
+        const { subscriptions } = result.rows[0];
+        resolve(!!subscriptions[channelId]);
       })
       .catch(error => reject(error));
   });

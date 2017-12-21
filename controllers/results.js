@@ -1,11 +1,11 @@
 const router = require('express').Router();
-const videosDb = require('../models/videos');
+const videos = require('../models/videos');
 
 router.get('/results', (req, res) => {
   const searchQuery = req.query.search_query;
 
   if (searchQuery) {
-    videosDb.queryResults(searchQuery).then(
+    videos.queryResults(searchQuery).then(
       (body) => {
         console.log(body);
         res.send(body.hits.hits);
@@ -15,7 +15,7 @@ router.get('/results', (req, res) => {
         res.end();
       },
     );
-  }
+  } else res.end();
 });
 
 module.exports = router;
