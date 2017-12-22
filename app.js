@@ -1,5 +1,6 @@
 const apm = require('elastic-apm-node').start({
   appName: 'client-app-service',
+  serverUrl: 'http://localhost:9200',
 });
 // const EC2 = require('aws-sdk/clients/ec2');
 // const SQS = require('aws-sdk/clients/sqs');
