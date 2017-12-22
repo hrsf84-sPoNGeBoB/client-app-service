@@ -1,0 +1,9 @@
+config:
+  target: 'http://localhost:13337'
+  phases:
+    - duration: 1
+      arrivalRate: 500
+scenarios:
+  - flow:
+    - get:
+        url: '/results?search_query=fish'
