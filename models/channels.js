@@ -2,7 +2,7 @@ const client = require('../db').cassandraClient;
 
 const KEYSPACE = 'channels';
 const TABLE = 'channels';
-const channelsKeyspaceQuery = `CREATE KEYSPACE IF NOT EXISTS ${KEYSPACE} WITH REPLICATION = {'class': '${process.env.CASSANDRA_REPL_CLASS}', 'replication_factor': ${process.env.CASSANDRA_REPL_FACTOR}};`;
+const channelsKeyspaceQuery = `CREATE KEYSPACE IF NOT EXISTS ${KEYSPACE} WITH REPLICATION = {'class': '${process.env.CASSANDRA_NET_CLASS}', ${process.env.CASSANDRA_NET_STRATEGY}};`;
 
 client.execute(channelsKeyspaceQuery) // Set up keyspace
   .then(() => {

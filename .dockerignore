@@ -4,9 +4,11 @@ config/production.json
 config/staging.json
 config/test.json
 data/
-.env
-*.env
-
+.git/
+.gitignore
+README.md
+CONTRIBUTING.md
+STYLE-GUIDE.md
 
 # Vim
 *.swp

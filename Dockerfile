@@ -1,7 +1,7 @@
-FROM node:8
+FROM node:latest
+RUN mkdir -p /app
 WORKDIR /app
-COPY package.json /app
-RUN npm install
 COPY . /app
+RUN npm install
 CMD node app.js
-EXPOSE 6969
+EXPOSE 8080
