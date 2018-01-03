@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "node -r dotenv/config app",
-    "start-dev": "nodemon -r dotenv/config app",
+    "start-dev": "nodemon --max_old_space_size=15360 -r dotenv/config app",
     "test": "mocha spec --recursive",
     "gen-data": "node -r dotenv/config scripts/generate-fake-channel-video-data",
     "load-test": "artillery run spec/load-test.yml"
@@ -26,7 +26,11 @@
     "jsonfile": "^4.0.0",
     "mocha": "^4.0.1",
     "moment": "^2.19.4",
-    "random-words": "0.0.1"
+    "random-words": "0.0.1",
+    "rewire": "^3.0.2",
+    "supertest": "^3.0.0",
+    "winston": "^2.4.0",
+    "winston-elasticsearch": "^0.5.6"
   },
   "devDependencies": {
     "artillery": "^1.6.0-12",

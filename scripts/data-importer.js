@@ -19,8 +19,8 @@ const VIDEO_BATCH_LEN = 25;
 
     if (batch.length >= CHANNEL_BATCH_LEN) {
       try {
-        // const fn = async () => { await channelsClient.batchInsertChannels(batch); };
-        // fn();
+        const fn = async () => { await channelsClient.batchInsertChannels(batch); };
+        fn();
       } catch (e) {
         console.log('Bad batch insert', e);
       }
