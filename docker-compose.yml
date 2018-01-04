@@ -6,19 +6,12 @@ services:
     env_file:
       - .env
     depends_on:
-      - 'cassandra_db'
-    links:
-      - 'cassandra_db'
+      - cassandra
     ports: 
       - '8080:13337'
-
-  cassandra_db:
+  cassandra:
     env_file:
       - cassandra.env
-    image: cassandra:latest
-    expose:
-      - 7000
-      - 7001
-      - 7199
-      - 9042
-      - 9160
+    image: cassandra:memfix
+    ports:
+      - '9042:9042'
