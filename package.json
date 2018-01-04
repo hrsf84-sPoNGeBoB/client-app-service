@@ -26,6 +26,7 @@
     "jsonfile": "^4.0.0",
     "mocha": "^4.0.1",
     "moment": "^2.19.4",
+    "node-statsd": "^0.1.1",
     "random-words": "0.0.1",
     "rewire": "^3.0.2",
     "supertest": "^3.0.0",

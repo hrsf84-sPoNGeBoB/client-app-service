@@ -18,7 +18,11 @@ const connect = () => {
     } else {
       console.log('Connected to Cassandra');
 
-      const channelsKeyspaceQuery = `CREATE KEYSPACE IF NOT EXISTS ${KEYSPACE} WITH REPLICATION = {'class': '${process.env.CASSANDRA_NET_CLASS}', 'us-west': 3};`;
+      // const systemAuthQuery = `CREATE KEYSPACE system_auth WITH replication = {'class': 'NetworkTopologyStrategy', 'us-west': 3};`;
+
+      // client.execute(systemAuthQuery) // Set up system_auth
+      //   .then(() => {
+      const channelsKeyspaceQuery = `CREATE KEYSPACE IF NOT EXISTS ${KEYSPACE} WITH replication = {'class': '${process.env.CASSANDRA_NET_CLASS}', 'us-west': 3};`;
 
       client.execute(channelsKeyspaceQuery) // Set up keyspace
         .then(() => {

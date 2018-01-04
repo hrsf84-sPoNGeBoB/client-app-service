@@ -1,8 +1,8 @@
 config:
-  target: 'http://localhost:13337'
+  target: 'http://client-app.client.d9d988bd.svc.dockerapp.io'
   phases:
-    - duration: 60
-      arrivalRate: 10
+    - duration: 2
+      arrivalRate: 100
 scenarios:
   - flow:
     - get:
