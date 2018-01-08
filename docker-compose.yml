@@ -1,0 +1,17 @@
+version: '3'
+
+services:
+  client_app:
+    build: .
+    env_file:
+      - .env
+    depends_on:
+      - cassandra
+    ports: 
+      - '80:13337'
+  cassandra:
+    env_file:
+      - cassandra.env
+    image: cassandra:memfix
+    ports:
+      - '9042:9042'

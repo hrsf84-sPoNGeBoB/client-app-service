@@ -2,21 +2,45 @@ const client = require('../db').cassandraClient;
 
 const KEYSPACE = 'channels';
 const TABLE = 'channels';
-const channelsKeyspaceQuery = `CREATE KEYSPACE IF NOT EXISTS ${KEYSPACE} WITH REPLICATION = {'class': '${process.env.CASSANDRA_REPL_CLASS}', 'replication_factor': ${process.env.CASSANDRA_REPL_FACTOR}};`;
+let connectionAttempts = 0;
 
-client.execute(channelsKeyspaceQuery) // Set up keyspace
-  .then(() => {
-    console.log('Cassandra channels keyspace active');
+const connect = () => {
+  client.connect((error) => {
+    if (error) {
+      console.log('Problem connecting to Cassandra', error);
+      if (connectionAttempts <= 10) {
+        console.log('Attempt', connectionAttempts);
+        setTimeout(() => {
+          connectionAttempts += 1;
+          connect();
+        }, 2000);
+      }
+    } else {
+      console.log('Connected to Cassandra');
 
-    const channelsTableQuery = `CREATE TABLE IF NOT EXISTS ${KEYSPACE}.${TABLE} (channel_id text PRIMARY KEY, subscriptions map<text, boolean>);`;
+      // const systemAuthQuery = `CREATE KEYSPACE system_auth WITH replication = {'class': 'NetworkTopologyStrategy', 'us-west': 3};`;
 
-    client.execute(channelsTableQuery) // Set up table
-      .then(() => {
-        console.log('Cassandra channels table up');
-      })
-      .catch(error => console.log('Error with Cassandra channels table', error));
-  })
-  .catch(error => console.log('Error with Cassandra channels keyspace', error));
+      // client.execute(systemAuthQuery) // Set up system_auth
+      //   .then(() => {
+      const channelsKeyspaceQuery = `CREATE KEYSPACE IF NOT EXISTS ${KEYSPACE} WITH replication = {'class': '${process.env.CASSANDRA_NET_CLASS}', 'us-west': 3};`;
+
+      client.execute(channelsKeyspaceQuery) // Set up keyspace
+        .then(() => {
+          console.log('Cassandra channels keyspace active');
+
+          const channelsTableQuery = `CREATE TABLE IF NOT EXISTS ${KEYSPACE}.${TABLE} (channel_id text PRIMARY KEY, subscriptions map<text, boolean>);`;
+
+          client.execute(channelsTableQuery) // Set up table
+            .then(() => {
+              console.log('Cassandra channels table up');
+            })
+            .catch(e => console.log('Error with Cassandra channels table', e));
+        })
+        .catch(e => console.log('Error with Cassandra channels keyspace', e));
+    }
+  });
+};
+connect();
 
 const addChannel = (channel) => {
   const query = `INSERT INTO ${KEYSPACE}.${TABLE} JSON ?;`;

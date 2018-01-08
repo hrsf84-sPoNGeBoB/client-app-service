@@ -1,9 +1,9 @@
 config:
-  target: 'http://localhost:13337'
+  target: 'http://client-app.client.d9d988bd.svc.dockerapp.io'
   phases:
-    - duration: 1
-      arrivalRate: 500
+    - duration: 2
+      arrivalRate: 100
 scenarios:
   - flow:
     - get:
-        url: '/results?search_query=fish'
+        url: '/results?search_query=new+year'
